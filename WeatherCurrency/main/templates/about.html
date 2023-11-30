@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link type="text/css" href="{% static "css/about.css" %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<div class="block block1">
+    <div class="container_column">
+        <h1>Про нашу команду</h1>
+    </div>
+</div>
+
+<div class="block block2 adaptive_direction">
+    <div class="text_block container_column">
+        <h2>Провідний розробник </h2>
+        <p>Владислав Сідорчук</p>
+    </div>
+    <div class="image imageVlad"></div>
+</div>
+<div class="block block3 adaptive_direction flip fade">
+    <div class="image imageMasha"></div>
+    <div class="text_block container_column">
+        <h2> Дизайнер </h2>
+        <p>Марія Кондрова</p>
+    </div>
+</div>
+<div class="block block3 adaptive_direction flip fade">
+    <div class="image imageSofia"></div>
+    <div class="text_block container_column">
+        <h2> Дизайнер </h2>
+        <p>Софія Ніколішина</p>
+    </div>
+</div>
+<div class="block block4 adaptive_direction">
+    <div class="text_block container_column">
+        <h2> Другорядний розробник </h2>
+        <p>Олександр-Василь Іжик</p>
+    </div>
+    <div class="image imageSasha"></div>
+</div>
+<div class="area" >
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div >
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("fade");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style = "  display: flex;align-items: center; justify-content: center; space";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+    </script>
+    
+{% endblock %}

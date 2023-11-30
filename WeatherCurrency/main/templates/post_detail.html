@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link type="text/css" href="{% static "css/article.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class='air air1'></div>
+<div class='air air2'></div>
+<div class='air air3'></div>
+<div class='air air4'></div>
+
+<a href="/posts" class="button plus_button"><-</a>
+
+<h1 class="text" style=" margin-top: 9vh;"> {{article.title}} </h1>
+<p style="text-align: justify;">{{article.text}}</p>
+
+
+<div class="comments">
+    <h2>Коментарі</h1>
+    {% for i in comment %}
+
+        <div class="comment">{{i.text}}</div>
+
+    {% endfor %}
+    <input type="button" value="Залишити відгук" onmousedown="viewDiv()" id="comment_button" class="button">
+    <form method="post" id="comment_input">
+        {% csrf_token %}
+        <textarea name="text" class="text_input" placeholder='Напишіть свій відгук' ></textarea><br>
+        <input type="submit" value="Підтвердити" class="button">
+    </form>
+</div>
+
+<script>
+    function viewDiv(){
+        document.getElementById("comment_input").style.display = "block";
+        document.getElementById("comment_button").style.display = "none";
+    };
+</script>
+
+{% endblock %}

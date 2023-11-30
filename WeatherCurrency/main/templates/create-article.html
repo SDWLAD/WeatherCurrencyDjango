@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link type="text/css" href="{% static "css/article.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class='air air1'></div>
+<div class='air air2'></div>
+<div class='air air3'></div>
+<div class='air air4'></div>
+
+<h1 style="font-size: 8vh;margin-top: 9vh;">Створення статті</h1>
+<form method="post">
+  {% csrf_token %}
+
+  {{form.title}}
+  {{form.text}}
+  <input type="submit" class="button" value="Підтвердити">
+</form>
+<a href="/posts" class="button plus_button"><-</a>
+
+<script>
+  const textarea = document.querySelector('textarea');
+
+  textarea.addEventListener( 'input', autosize );
+              
+  function autosize(){
+    this.style.height = 'auto';
+    let applyNow = this.style.offsetHeight;
+    this.style.height = this.scrollHeight - '-4' + 'px';
+  }
+</script>
+
+{% endblock %}

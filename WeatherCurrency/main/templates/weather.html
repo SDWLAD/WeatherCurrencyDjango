@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% block css %}
+    <link type="text/css" href="{% static "css/weather.css" %}" rel="stylesheet">
+{% endblock %}
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<div class="container_column" style="margin-top: 9vh;">
+    <div class="adaptive_direction">
+        <div class="weather_image">
+            {{ weather.0.0 }}
+        </div>
+        
+        <div class="container_column">
+            <form method="post" class="adaptive_direction">
+                {% csrf_token %}
+                <input class="city_text" type="text" name="city" value="{{ City }}" id="city_input" size="6">
+            </form>
+            <div class="temperature">
+                {{ weather.0.1 }}°
+            </div>
+        </div>
+    </div>
+    <div class="weather_table">
+        <table>
+            <tr>
+                {% for i in seven_days %}
+                    <td>{{i}}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for i in weather %}
+                    <td>{{i.0}}<br>{{i.1}}°<br><div class="wind_speed">{{i.2}}</div></td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#city_input').keyup(function() {
+            $(this).attr('size', Math.max(3, $(this).val().length-3))
+        });
+    });
+</script>
+{% endblock %}
